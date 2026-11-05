@@ -7,12 +7,23 @@ node_modules/
 dist/
 dist-ssr/
 build/
+.next/
+out/
 
 # Environment files
 .env
 .env.*
 !.env.example
+!.env.production.example
 *.local
+
+# Archives and backups
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+*.bak
 
 # Logs
 logs

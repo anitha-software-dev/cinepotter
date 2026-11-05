@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 
 export function FeaturedCard() {
@@ -36,7 +37,9 @@ export function FeaturedCard() {
               marketers, and creators. A patent application has been filed for <br className="hidden lg:block" />
               CinePotter’s innovative technology.
             </p>
-            <Button variant="primary" className="shadow-glow-sm px-8">Learn More</Button>
+            <Link to="/journey/">
+              <Button variant="primary" className="shadow-glow-sm px-8">Learn More</Button>
+            </Link>
           </div>
 
         </div>

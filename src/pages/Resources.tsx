@@ -11,7 +11,7 @@ export function Resources() {
       <SEO 
         title="AI Video Creation Resources & Guides | CinePotter"
         description="Access practical AI video creation resources, guides and insights to improve content workflows, video quality and creative team productivity."
-        canonical="https://cinepotter.com/resources"
+        canonical="https://www.cinepotter.com/resources"
       />
       <Navbar />
       <ResourcesHero />

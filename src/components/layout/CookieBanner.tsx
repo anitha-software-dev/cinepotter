@@ -1,32 +1,32 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { COOKIE_CONSENT_KEY, onCookieConsentAccepted } from '../../lib/analytics';
 
 export function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Check if user has already made a choice
-    const consent = localStorage.getItem('cookie-consent');
+    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!consent) {
-      // Small delay to not immediately pop up on first render
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
     }
   }, []);
 
   const handleAcceptAll = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted');
     setIsVisible(false);
+    onCookieConsentAccepted();
   };
 
   const handleRejectAll = () => {
-    localStorage.setItem('cookie-consent', 'rejected');
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'rejected');
     setIsVisible(false);
   };
 
   const handleCustomise = () => {
-    localStorage.setItem('cookie-consent', 'custom');
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'custom');
     setIsVisible(false);
   };
 
@@ -44,7 +44,7 @@ export function CookieBanner() {
             <div className="flex-1">
               <h3 className="font-bold text-lg mb-2 text-white">We value your privacy</h3>
               <p className="text-sm text-text-secondary leading-relaxed max-w-4xl">
-                We use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking "Accept All", you consent to our use of cookies. <Link to="/cookies" className="text-[#0054D1] hover:underline underline-offset-2">Cookie Policy</Link>
+                We use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking "Accept All", you consent to our use of cookies. <Link to="/cookies/" className="text-[#0054D1] hover:underline underline-offset-2">Cookie Policy</Link>
               </p>
             </div>
             

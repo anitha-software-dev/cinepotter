@@ -10,7 +10,7 @@ export function Solutions() {
       <SEO 
         title="AI Video Marketing Solutions | CinePotter"
         description="Discover AI video marketing solutions for agencies, brands and creative teams looking to simplify workflows and produce campaigns efficiently."
-        canonical="https://cinepotter.com/solutions"
+        canonical="https://www.cinepotter.com/solutions"
       />
       <SolutionsHero />
       <SolutionsIndustry />

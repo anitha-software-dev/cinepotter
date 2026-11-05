@@ -10,7 +10,7 @@ export function Offerings() {
       <SEO 
         title="AI Video Creation Tools for Teams | CinePotter"
         description="Explore AI video creation tools that help teams streamline scripting, production and creative workflows while producing engaging video content."
-        canonical="https://cinepotter.com/offerings"
+        canonical="https://www.cinepotter.com/offerings"
       />
       <OfferingsHero />
       <OfferingsFeatures />

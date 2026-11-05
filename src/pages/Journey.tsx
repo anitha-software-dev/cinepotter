@@ -10,7 +10,7 @@ export function Journey() {
       <SEO 
         title="AI Creative Technology & Our Journey | CinePotter"
         description="Explore CinePotter's journey in AI creative technology and discover our vision for making professional video creation smarter and more accessible."
-        canonical="https://cinepotter.com/journey"
+        canonical="https://www.cinepotter.com/journey"
       />
       <JourneyHero />
       <WhoWeAre />

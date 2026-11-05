@@ -1,24 +1,34 @@
-import { useLocation, Navigate, useNavigate } from 'react-router-dom';
+import { useLocation, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { SEO } from '../components/seo/SEO';
+import { getStaticArticleBySlug } from '../data/staticArticles';
 
 export function Article() {
   const location = useLocation();
   const navigate = useNavigate();
-  const article = location.state?.article;
+  const params = useParams();
+  const fromState = location.state?.article;
+  const fromSlug = getStaticArticleBySlug(String(params.id || ''));
+  const article = fromState
+    ? {
+        title: fromState.title,
+        description: fromState.description,
+        image: fromState.image,
+        tag: fromState.tag,
+      }
+    : fromSlug;
 
   if (!article) {
-    return <Navigate to="/resources" replace />;
+    return <Navigate to="/resources/" replace />;
   }
 
   return (
     <main className="flex-grow bg-background relative overflow-hidden pt-24 pb-20 px-4 md:px-8">
-      <SEO 
+      <SEO
         title={`${article.title} | CinePotter`}
-        description={article.description || "Read this article on CinePotter."}
-        canonical={`https://cinepotter.com${location.pathname}`}
+        description={article.description || 'Read this article on CinePotter.'}
       />
-      
+
       <div className="max-w-[800px] mx-auto">
         <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-text-secondary hover:text-white transition-colors mb-8 cursor-pointer">
           <ArrowLeft size={16} /> Back

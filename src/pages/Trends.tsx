@@ -9,7 +9,7 @@ export function Trends() {
       <SEO 
         title="AI Video Trends & Industry Insights | CinePotter"
         description="Stay informed about AI video trends, emerging technologies and industry insights changing how brands, marketers and creative teams produce content."
-        canonical="https://cinepotter.com/trends"
+        canonical="https://www.cinepotter.com/trends"
       />
       <TrendsHero />
       <TrendsExplore />

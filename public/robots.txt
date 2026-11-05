@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Prefer the marketing site; keep thin/utility paths lightly restricted if needed later.
+Sitemap: https://www.cinepotter.com/sitemap.xml

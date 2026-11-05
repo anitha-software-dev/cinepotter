@@ -1,6 +1,12 @@
+import { SEO } from '../components/seo/SEO';
+
 export function PrivacyPolicy() {
   return (
     <main className="flex-grow pt-32 pb-20 px-4 md:px-8 max-w-[1000px] mx-auto text-white">
+      <SEO
+        title="Privacy Policy | CinePotter"
+        description="Learn how CinePotter collects, uses, and protects personal information when you use our AI video production platform."
+      />
       <h1 className="text-3xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#DD19E0] to-[#0054D1]">Privacy Policy</h1>
       
       <div className="space-y-8 text-sm md:text-base text-text-secondary leading-relaxed">

@@ -6,11 +6,11 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Our Offerings', to: '/offerings' },
-    { name: 'Solutions', to: '/solutions' },
-    { name: 'Resources', to: '/resources' },
-    { name: 'Our journey', to: '/journey' },
-    { name: 'Trends', to: '/trends' },
+    { name: 'Our Offerings', to: '/offerings/' },
+    { name: 'Solutions', to: '/solutions/' },
+    { name: 'Resources', to: '/resources/' },
+    { name: 'Our journey', to: '/journey/' },
+    { name: 'Trends', to: '/trends/' },
   ];
 
   return (

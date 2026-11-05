@@ -12,7 +12,7 @@ export function FeaturedResources() {
         
         {/* Large Featured Card (Left) */}
         <div 
-          onClick={() => navigate('/resources/the-complete-guide-to-ai-video-creation', { state: { article: { title: "The Complete Guide to AI Video Creation", description: "Learn how to go from idea to a stunning video using CinePotter's AI-powered tools.", image: "/images/resource-1.webp", tag: "Featured Guide" } } })}
+          onClick={() => navigate('/resources/the-complete-guide-to-ai-video-creation/', { state: { article: { title: "The Complete Guide to AI Video Creation", description: "Learn how to go from idea to a stunning video using CinePotter's AI-powered tools.", image: "/images/resource-1.webp", tag: "Featured Guide" } } })}
           className="w-full lg:w-[60%] relative h-[350px] md:h-[450px] lg:h-[500px] rounded-[32px] overflow-hidden group cursor-pointer border-[2px] border-transparent hover:border-[#DD19E0]/50 transition-all duration-500 shadow-[0_0_50px_rgba(221,25,224,0.1)]"
         >
           {/* Background Image */}
@@ -46,7 +46,7 @@ export function FeaturedResources() {
                 Getting Started with CinePotter
               </h3>
               <Link 
-                to="/resources/getting-started-with-cinepotter"
+                to="/resources/getting-started-with-cinepotter/"
                 state={{ 
                   article: { 
                     title: "Getting Started with CinePotter", 
@@ -72,7 +72,7 @@ export function FeaturedResources() {
                 10 Creative Prompts to Try Today
               </h3>
               <Link 
-                to="/resources/10-creative-prompts-to-try-today"
+                to="/resources/10-creative-prompts-to-try-today/"
                 state={{ 
                   article: { 
                     title: "10 Creative Prompts to Try Today", 

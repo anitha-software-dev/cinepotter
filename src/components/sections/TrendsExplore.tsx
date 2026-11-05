@@ -118,7 +118,7 @@ export function TrendsExplore() {
               </p>
               
               <Link 
-                to={`/trends/${article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`} 
+                to={`/trends/${article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}/`} 
                 state={{ article }}
                 className="text-sm font-semibold text-gradient hover:opacity-80 transition-opacity inline-flex items-center gap-1 w-fit relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[1px] after:bg-gradient-to-r after:from-[#DD19E0] after:to-[#0054D1]"
               >

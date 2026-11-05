@@ -1,12 +1,40 @@
+import { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Send } from 'lucide-react';
+import { Send, Check, CheckCircle2 } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { PartnerLogos } from '../sections/PartnerLogos';
 import { FinalCTA } from '../sections/FinalCTA';
 
 export function Footer() {
   const location = useLocation();
-  const hidePartnerLogosPaths = ['/offerings', '/resources', '/contact', '/solutions', '/trends', '/privacy', '/terms', '/cookies'];
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = email.trim();
+
+    if (!trimmed) {
+      setError('Please enter your email address');
+      setIsSubscribed(false);
+      return;
+    }
+
+    if (!EMAIL_RE.test(trimmed)) {
+      setError('Please enter a valid email address');
+      setIsSubscribed(false);
+      return;
+    }
+
+    setError('');
+    setIsSubscribed(true);
+    setEmail('');
+  };
+
+  const hidePartnerLogosPaths = ['/offerings', '/resources', '/contact', '/solutions', '/trends', '/privacy', '/terms', '/cookies', '/blog'];
   const hidePartnerLogos = hidePartnerLogosPaths.some(path => location.pathname === path || location.pathname.startsWith(`${path}/`));
 
   return (
@@ -30,7 +58,7 @@ export function Footer() {
           
           {/* Left - Contact Us */}
           <div className="flex flex-col items-center md:items-start pt-2">
-            <Link to="/contact" className="hover:opacity-80 transition-opacity">
+            <Link to="/contact/" className="hover:opacity-80 transition-opacity">
               <h4 className="text-white font-bold text-xl mb-6">Contact Us</h4>
             </Link>
             <div className="space-y-2 text-text-secondary text-sm md:text-base">
@@ -74,16 +102,55 @@ export function Footer() {
           {/* Right - Newsletter */}
           <div className="flex flex-col items-center md:items-start md:pl-8 md:pt-2">
             <h4 className="text-white font-bold text-xl mb-6">Subscribe to our<br/>Newsletter</h4>
-            <div className="relative w-full max-w-[280px]">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="w-full h-[42px] bg-transparent border border-white/20 rounded-full pl-6 pr-12 text-white placeholder-text-secondary text-sm focus:outline-none focus:border-white/50 transition-colors"
-              />
-              <button className="absolute right-1 top-1 w-[34px] h-[34px] rounded-full bg-gradient-to-r from-[#DD19E0] to-[#0054D1] flex items-center justify-center text-white hover:shadow-glow-sm transition-all">
-                <Send size={14} className="-ml-0.5" />
-              </button>
-            </div>
+            <form onSubmit={handleSubscribe} noValidate className="w-full max-w-[280px]">
+              <div className="relative w-full">
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (error) setError('');
+                    if (isSubscribed) setIsSubscribed(false);
+                  }}
+                  placeholder="Enter your email" 
+                  aria-label="Email address for newsletter"
+                  aria-invalid={!!error}
+                  className={`w-full h-[42px] bg-transparent border rounded-full pl-6 pr-12 text-white placeholder-text-secondary text-sm focus:outline-none transition-colors ${
+                    error 
+                      ? 'border-red-500 focus:border-red-400' 
+                      : isSubscribed 
+                      ? 'border-emerald-500/80 focus:border-emerald-400' 
+                      : 'border-white/20 focus:border-white/50'
+                  }`}
+                />
+                <button 
+                  type="submit"
+                  aria-label="Subscribe to newsletter"
+                  className="absolute right-1 top-1 w-[34px] h-[34px] rounded-full bg-gradient-to-r from-[#DD19E0] to-[#0054D1] flex items-center justify-center text-white hover:shadow-glow-sm transition-all cursor-pointer"
+                >
+                  {isSubscribed ? (
+                    <Check size={14} className="text-white" />
+                  ) : (
+                    <Send size={14} className="-ml-0.5" />
+                  )}
+                </button>
+              </div>
+
+              {/* Error Validation Message */}
+              {error && (
+                <p className="text-red-400 text-xs mt-2 pl-2 text-left" role="alert">
+                  {error}
+                </p>
+              )}
+
+              {/* Success Message */}
+              {isSubscribed && (
+                <p className="text-emerald-400 text-xs mt-2 pl-2 text-left flex items-center gap-1.5" role="status">
+                  <CheckCircle2 size={13} className="shrink-0" />
+                  <span>Thank you for subscribing!</span>
+                </p>
+              )}
+            </form>
           </div>
         </div>
         
@@ -100,12 +167,14 @@ export function Footer() {
       <div className="w-full bg-gradient-to-r from-[#DD19E0] to-[#0054D1] relative z-10">
         <div className="max-w-[1280px] mx-auto py-4 px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-white text-xs font-medium">
           <p>© 2026 CinePotter. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <Link to="/privacy" className="hover:text-white/80 transition-colors">Privacy Policy</Link>
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <Link to="/blog/" className="hover:text-white/80 transition-colors">Blogs</Link>
             <span>·</span>
-            <Link to="/terms" className="hover:text-white/80 transition-colors">Terms of Service</Link>
+            <Link to="/privacy/" className="hover:text-white/80 transition-colors">Privacy Policy</Link>
             <span>·</span>
-            <Link to="/cookies" className="hover:text-white/80 transition-colors">Cookies Policy</Link>
+            <Link to="/terms/" className="hover:text-white/80 transition-colors">Terms of Service</Link>
+            <span>·</span>
+            <Link to="/cookies/" className="hover:text-white/80 transition-colors">Cookies Policy</Link>
           </div>
         </div>
       </div>
